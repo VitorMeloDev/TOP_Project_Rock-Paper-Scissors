@@ -2,6 +2,7 @@ const playerScoreElement = document.querySelector("#playerScore");
 const computerScoreElement = document.querySelector("#computerScore");
 const playerChoiceElement = document.querySelector("#playerChoice");
 const computerChoiceElement = document.querySelector("#computerChoice");
+const roundElement = document.querySelector("#round");
 const choices = document.querySelectorAll(".choice");
 
 let rounds = 5;
@@ -11,7 +12,6 @@ let computerScore = 0;
 let matchFinish = false;
 
 function playRound(playerChoice, computerChoice){
-
     if(!matchFinish){
         const winner = checkWinner(playerChoice, computerChoice);
 
@@ -27,9 +27,8 @@ function playRound(playerChoice, computerChoice){
                 break;
         }
 
-        updateDisplay(playerChoice, computerChoice);
         currentRound++;
-        console.log(currentRound);
+        updateDisplay(playerChoice, computerChoice);
         if(currentRound >= rounds){endGame();}
     }
 }
@@ -46,7 +45,6 @@ function endGame(){
             alert("COMPUTER WON!");
         }
     }, 1000);
-    
 }
 
 function updateDisplay(playerChoice, computerChoice){
@@ -54,8 +52,8 @@ function updateDisplay(playerChoice, computerChoice){
     computerScoreElement.innerText = computerScore
     playerChoiceElement.innerText = playerChoice;
     computerChoiceElement.innerText = computerChoice;
+    roundElement.innerText = `ROUND ${currentRound}/${rounds}`;
 }
-
 
 function checkWinner(playerChoice, computerChoice){
     let winner;
